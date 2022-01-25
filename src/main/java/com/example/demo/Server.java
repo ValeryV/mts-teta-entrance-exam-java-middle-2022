@@ -8,6 +8,8 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.net.ServerSocket;
 import java.net.Socket;
+
+import mts.exam.module.TaskService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,6 +18,8 @@ public class Server {
   private static final Logger LOG = LoggerFactory.getLogger(Server.class);
 
   private ServerSocket serverSocket;
+
+  private TaskService service = new TaskService();
 
   public void start() throws IOException {
     serverSocket = new ServerSocket(9090);
@@ -32,6 +36,8 @@ public class Server {
             String line = serverReader.readLine();
             LOG.debug("Request captured: " + line);
             // В реализации по умолчанию в ответе пишется та же строка, которая пришла в запросе
+            // todo из line получить команду юзера и аргументы - вызвать соответствующий сервис сформировать ответ
+            line = service.lineTranslate(line);
             serverWriter.write(line);
             serverWriter.flush();
           }
