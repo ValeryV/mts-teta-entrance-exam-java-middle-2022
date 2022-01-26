@@ -35,9 +35,8 @@ public class Server {
           ) {
             String line = serverReader.readLine();
             LOG.debug("Request captured: " + line);
-            // В реализации по умолчанию в ответе пишется та же строка, которая пришла в запросе
-            // todo из line получить команду юзера и аргументы - вызвать соответствующий сервис сформировать ответ
             line = service.lineTranslate(line);
+            LOG.debug("Response: " + line);
             serverWriter.write(line);
             serverWriter.flush();
           }
