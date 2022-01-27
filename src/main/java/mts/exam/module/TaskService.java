@@ -53,7 +53,7 @@ public class TaskService {
                     return Result.ERROR.name();
             }
             case LIST_TASK: {
-                return Result.TASKS.name() + "[" + String.join(", ", taskDao.findAll(user)) + "]";
+                return Result.TASKS.name() + " [" + String.join(", ", taskDao.findAll(arg)) + "]";
             }
             default:
                 return Result.ERROR.name();

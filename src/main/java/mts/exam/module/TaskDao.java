@@ -51,7 +51,7 @@ public class TaskDao {
     }
 
     public List<String> findAll(String owner) {
-        return Tasks.getTasks(owner).stream().map(Task::getName).collect(Collectors.toList());
+        return Tasks.getTasks(owner).stream().map(Task::getName).sorted().collect(Collectors.toList());
     }
 
     private Task getTaskWithRight(String name, String user) throws AuthorizeException {
